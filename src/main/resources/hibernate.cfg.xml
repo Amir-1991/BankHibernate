@@ -11,17 +11,17 @@
         <property name="connection.username">root</property>
         <property name="connection.password">123</property>
 
-        <property name="show_sql">false</property>
-        <property name="format_sql">false</property>
-        <property name="hbm2ddl.auto">update</property>
-        <property name="current_session_context_class">thread</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="current_session_context_class">thread</property>
+        <property name="hbm2ddl.auto">update</property>
+        <property name="format_sql">false</property>
+        <property name="show_sql">false</property>
 
-        <mapping class="entity.TagEntity"/>
-        <mapping class="entity.UserEntity"/>
-        <mapping class="entity.RollEntity"/>
-        <mapping class="entity.ArticleEntity"/>
-        <mapping class="entity.CategoryEntity"/>
+        <mapping class="Entity.CreditCardEntity"/>
+        <mapping class="Entity.BankBranchEntity"/>
+        <mapping class="Entity.EmployeeEntity"/>
+        <mapping class="Entity.CustomerEntity"/>
+        <mapping class="Entity.AccountEntity"/>
 
     </session-factory>
 
