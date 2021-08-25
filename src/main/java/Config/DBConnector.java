@@ -1,11 +1,13 @@
 package Config;
 
+import Entity.CustomerEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import javax.swing.text.html.parser.Entity;
+import javax.persistence.Query;
+import java.util.List;
 
 public class DBConnector {
 
@@ -13,15 +15,16 @@ public class DBConnector {
     public static SessionFactory sessionFactory;
     public static Session session;
     public static Transaction transaction;
+    public static Query query;
 
     public static void connection(){
         configuration = new Configuration().configure();
         sessionFactory = configuration.buildSessionFactory();
         session = sessionFactory.openSession();
-        transaction = session.beginTransaction();
     }
 
-    public static void save(Entity entity){
+    public static void save(Object entity){
+        transaction = session.beginTransaction();
         session.save(entity);
     }
 
@@ -32,5 +35,12 @@ public class DBConnector {
     public static void disConnection(){
         session.close();
         sessionFactory.close();
+    }
+
+    public static List query(String loadQuery){
+        transaction = session.beginTransaction();
+        query = session.createQuery(loadQuery);
+        List<CustomerEntity> reList = query.getResultList();
+        return reList;
     }
 }

@@ -25,6 +25,9 @@ public class CustomerEntity {
     @Column(name = "CUSTOMER_NATIONAL_NUMBER",length = 10,unique = true)
     private String customerNationalNumber;
 
+    @Column(name = "CUSTOMER_PHONE_NUMBER",length = 11,unique = true)
+    private String customerPhoneNumber;
+
     @Column(name = "PASSWORD",length = 25)
     private String password;
 
@@ -40,6 +43,7 @@ public class CustomerEntity {
         this.customerFirstName = customerFirstName;
         this.customerLastName = customerLastName;
         this.customerNationalNumber = customerNationalNumber;
+        this.customerPhoneNumber = customerPhoneNumber;
         this.password = password;
         this.accountOwner = accountOwner;
     }
@@ -52,6 +56,7 @@ public class CustomerEntity {
                 ", customerFirstName='" + customerFirstName + '\'' +
                 ", customerLastName='" + customerLastName + '\'' +
                 ", customerNationalNumber='" + customerNationalNumber + '\'' +
+                ", customerPhoneNumber='" + customerPhoneNumber + '\'' +
                 ", password='" + password + '\'' +
                 ", accountOwner=" + accountOwner +
                 '}';
@@ -95,6 +100,14 @@ public class CustomerEntity {
 
     public void setCustomerNationalNumber(String customerNationalNumber) {
         this.customerNationalNumber = customerNationalNumber;
+    }
+
+    public String getCustomerPhoneNumber() {
+        return customerPhoneNumber;
+    }
+
+    public void setCustomerPhoneNumber(String customerPhoneNumber) {
+        this.customerPhoneNumber = customerPhoneNumber;
     }
 
     public String getPassword() {
