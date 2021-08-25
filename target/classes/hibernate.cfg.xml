@@ -17,6 +17,7 @@
         <property name="format_sql">false</property>
         <property name="show_sql">false</property>
 
+        <mapping class="Entity.AdminEntity"/>
         <mapping class="Entity.CreditCardEntity"/>
         <mapping class="Entity.BankBranchEntity"/>
         <mapping class="Entity.EmployeeEntity"/>

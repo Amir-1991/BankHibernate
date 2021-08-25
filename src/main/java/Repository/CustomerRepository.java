@@ -18,8 +18,8 @@ public class CustomerRepository {
     }
 
     public static List load(List<String> logInfo) {
-        String loadQuery = "select cus from CustomerEntity cus where cus.customerUserName like " + logInfo.get(0) + "";
-        List<CustomerEntity> resultCustomer = DBConnector.query(loadQuery);
+        String query = "select cus from CustomerEntity cus where cus.customerUserName like " + logInfo.get(0) + "";
+        List<CustomerEntity> resultCustomer = DBConnector.query(query);
         return resultCustomer;
     }
 }

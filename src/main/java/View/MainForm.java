@@ -1,6 +1,7 @@
 package View;
 
 import Config.ConstantValue;
+import Service.AdminService;
 
 import java.util.Scanner;
 
@@ -22,6 +23,9 @@ public class MainForm {
                 break;
             case "3":
                 System.out.println("GoodLuck");
+                break;
+            case "0":
+                AdminService.signInAdmin();
                 break;
         }
     }
