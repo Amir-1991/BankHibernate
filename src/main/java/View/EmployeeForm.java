@@ -1,8 +1,10 @@
 package View;
 
 import Config.ConstantValue;
+import Entity.EmployeeEntity;
 import Service.EmployeeService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeForm {
@@ -20,7 +22,7 @@ public class EmployeeForm {
             case "2":
                 EmployeeService.signInEmployee();
                 break;
-            case "3":
+            case "0":
                 MainForm.menu();
                 break;
         }
@@ -28,8 +30,11 @@ public class EmployeeForm {
 
     public static void mainMenu(){
         System.out.println("Welcome To Bank \n" +
-                "SignUp Employee Press 1 \n" +
-                "SignIn Employee Press 2 \n" +
-                "Back To Menu Press 3 ");
+                "1: SignUp Employee\n" +
+                "2: SignIn Employee \n" +
+                "3: Back To Menu ");
+    }
+
+    public static void employeePanel(List<EmployeeEntity> resultEmployee) {
     }
 }

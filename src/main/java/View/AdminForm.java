@@ -2,6 +2,7 @@ package View;
 
 import Config.ConstantValue;
 import Entity.AdminEntity;
+import Service.AdminService;
 import Service.BankBranchService;
 import Service.CustomerService;
 
@@ -25,6 +26,9 @@ public class AdminForm {
                 BankBranchService.seeBranchAdmins();
                 break;
             case "3":
+                AdminService.createRoll();
+                break;
+            case "0":
                 MainForm.menu();
                 break;
         }
@@ -33,7 +37,8 @@ public class AdminForm {
     public static void mainDashboard(){
         System.out.println("Welcome To Your Dashboard \n" +
                 "1: Creat Bank Branch \n" +
-                "3: See All Branch Administrators \n" +
-                "4: Exit");
+                "2: See All Branch Administrators \n" +
+                "3: Create Employee Roll \n" +
+                "0: Exit");
     }
 }

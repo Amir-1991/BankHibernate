@@ -32,8 +32,8 @@ public class MainForm {
 
     public static void mainMenu(){
         System.out.println("Welcome To Bank \n" +
-                "Customers Press 1 \n" +
-                "Employees Press 2 \n" +
-                "Exit Press 3 ");
+                "1: Customers \n" +
+                "2: Employees \n" +
+                "3: Exit ");
     }
 }

@@ -26,6 +26,10 @@ public class AdminService {
         }
     }
 
+    public static void createRoll() {
+
+    }
+
     public static void showMessage(String inputMsg) {
         System.out.println("Please Enter Your " + inputMsg);
     }

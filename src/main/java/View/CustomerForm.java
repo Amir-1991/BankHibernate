@@ -26,7 +26,7 @@ public class CustomerForm {
             case "2":
                 CustomerService.signInCustomer();
                 break;
-            case "3":
+            case "0":
                 MainForm.menu();
                 break;
         }
@@ -46,7 +46,7 @@ public class CustomerForm {
             case "2":
                 CreditCardService.createCreditCard();
                 break;
-            case "3":
+            case "0":
                 menu();
                 break;
         }
@@ -56,13 +56,13 @@ public class CustomerForm {
         System.out.println("Welcome To Bank \n" +
                 "1: SignUp Customers \n" +
                 "2: SignIn Customers \n" +
-                "3: Back To Menu ");
+                "0: Back To Menu ");
     }
 
     public static void customerMenu(){
         System.out.println("This Is Your Panel \n" +
                 "1: Creat Account \n" +
                 "2: Creat Credit Card \n" +
-                "3: Exit");
+                "0: Exit");
     }
 }

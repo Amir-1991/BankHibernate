@@ -20,6 +20,12 @@ public class EmployeeEntity {
     @Column(name = "EMPLOYEE_LAST_NAME")
     private String employeeLastName;
 
+    @Column(name = "EMPLOYEE_NATIONAL_CODE")
+    private String employeeNationalCode;
+
+    @Column(name = "EMPLOYEE_PHONE_NUMBER")
+    private String employeePhoneNumber;
+
     @Column(name = "EMPLOYEE_PASSWORD")
     private String employeePassword;
 
@@ -34,10 +40,19 @@ public class EmployeeEntity {
 
     }
 
-    public EmployeeEntity(String employeeUserName, String employeeFirstName, String employeeLastName, String employeePassword, String employeeRollTitle, BankBranchEntity bankEmployees) {
+    public EmployeeEntity(String employeeUserName
+            , String employeeFirstName
+            , String employeeLastName
+            , String employeeNationalCode
+            , String employeePhoneNumber
+            , String employeePassword
+            , String employeeRollTitle
+            , BankBranchEntity bankEmployees) {
         this.employeeUserName = employeeUserName;
         this.employeeFirstName = employeeFirstName;
         this.employeeLastName = employeeLastName;
+        this.employeeNationalCode = employeeNationalCode;
+        this.employeePhoneNumber = employeePhoneNumber;
         this.employeePassword = employeePassword;
         this.employeeRollTitle = employeeRollTitle;
         this.bankEmployees = bankEmployees;
@@ -51,6 +66,8 @@ public class EmployeeEntity {
                 ", employeeFirstName='" + employeeFirstName + '\'' +
                 ", employeeLastName='" + employeeLastName + '\'' +
                 ", employeePassword='" + employeePassword + '\'' +
+                ", employeeNationalCode='" + employeeNationalCode + '\'' +
+                ", employeePhoneNumber='" + employeePhoneNumber + '\'' +
                 ", employeeRollTitle='" + employeeRollTitle + '\'' +
                 ", bankEmployees=" + bankEmployees +
                 '}';
@@ -86,6 +103,22 @@ public class EmployeeEntity {
 
     public void setEmployeeLastName(String employeeLastName) {
         this.employeeLastName = employeeLastName;
+    }
+
+    public String getEmployeeNationalCode() {
+        return employeeNationalCode;
+    }
+
+    public void setEmployeeNationalCode(String employeeNationalCode) {
+        this.employeeNationalCode = employeeNationalCode;
+    }
+
+    public String getEmployeePhoneNumber() {
+        return employeePhoneNumber;
+    }
+
+    public void setEmployeePhoneNumber(String employeePhoneNumber) {
+        this.employeePhoneNumber = employeePhoneNumber;
     }
 
     public String getEmployeePassword() {
