@@ -1,7 +1,9 @@
 package Service;
 
 import Entity.AdminEntity;
+import Entity.RollEntity;
 import Repository.AdminRepository;
+import Repository.RollRepository;
 import View.AdminForm;
 
 import java.util.ArrayList;
@@ -27,7 +29,11 @@ public class AdminService {
     }
 
     public static void createRoll() {
-
+        Scanner rollScanner = new Scanner(System.in);
+        RollEntity newRoll = new RollEntity();
+        showMessage("Roll Title");
+        newRoll.setRollTitle(rollScanner.next());
+        RollRepository.save(newRoll);
     }
 
     public static void showMessage(String inputMsg) {

@@ -13,10 +13,10 @@ public class BankBranchEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "BANK_BRANCH_NAME",length = 30)
+    @Column(name = "BANK_BRANCH_NAME",length = 30,unique = true)
     private String bankBranchName;
 
-    @Column(name = "BANK_BRANCH_ADMIN")
+    @Column(name = "BANK_BRANCH_ADMIN",unique = true)
     private String bankBranchAdmin;
 
     @OneToMany(mappedBy = "bankEmployees")
