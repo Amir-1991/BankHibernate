@@ -5,6 +5,7 @@ import Entity.RollEntity;
 import Repository.AdminRepository;
 import Repository.RollRepository;
 import View.AdminForm;
+import View.MainForm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class AdminService {
         List<AdminEntity> resultAdmin = AdminRepository.load(logInfo);
         if (resultAdmin.size() == 0) {
             System.out.println("Admin Not Found");
+            MainForm.menu();
         } else if (!resultAdmin.get(0).getAdminPassword().equals(logInfo.get(1))) {
             System.out.println("Password Is Wrong ");
         } else {
@@ -28,7 +30,7 @@ public class AdminService {
         }
     }
 
-    public static void createRoll() {
+    public static void createRoll(List<AdminEntity> resultAdmin) {
         Scanner rollScanner = new Scanner(System.in);
         RollEntity newRoll = new RollEntity();
         showMessage("Roll Title");

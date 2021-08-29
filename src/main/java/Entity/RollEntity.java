@@ -1,10 +1,13 @@
 package Entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ROLL")
 public class RollEntity {
+
     @Id
     @Column(name = "ROLL_ID",length = 2)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,6 +15,9 @@ public class RollEntity {
 
     @Column(name = "ROLL_TITLE",length = 25,unique = true)
     private String rollTitle;
+
+    @OneToMany(mappedBy = "employeeRole")
+    private List<EmployeeEntity> employeeRole = new ArrayList<EmployeeEntity>();
 
     public RollEntity() {
 

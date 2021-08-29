@@ -8,7 +8,6 @@ import java.util.List;
 public class RollRepository {
     public static void save(RollEntity newRoll) {
         DBConnector.save(newRoll);
-        DBConnector.commit();
     }
 
     public static List<RollEntity> seeAllRolls() {

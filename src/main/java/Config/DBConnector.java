@@ -18,16 +18,25 @@ public class DBConnector {
         configuration = new Configuration().configure();
         sessionFactory = configuration.buildSessionFactory();
         session = sessionFactory.openSession();
-        transaction = session.beginTransaction();
     }
 
     public static void save(Object entity) {
+        transAction();
         session.save(entity);
+        commit();
+    }
+    public static void update(Object entity) {
+        transAction();
+        session.update(entity);
+        commit();
+    }
+
+    public static void transAction(){
+        transaction = session.beginTransaction();
     }
 
     public static void commit() {
         transaction.commit();
-        transaction = session.beginTransaction();
     }
 
     public static void disConnection() {
@@ -36,7 +45,9 @@ public class DBConnector {
     }
 
     public static List query(String loadQuery) {
+        transAction();
         List query = session.createQuery(loadQuery).list();
+        commit();
         return query;
     }
 }

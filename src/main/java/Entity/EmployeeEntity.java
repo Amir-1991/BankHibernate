@@ -29,8 +29,13 @@ public class EmployeeEntity {
     @Column(name = "EMPLOYEE_PASSWORD")
     private String employeePassword;
 
-    @Column(name = "EMPLOYEE_ROLL_TITLE")
-    private String employeeRollTitle;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EMPLOYEE_ROLL_TITLE")
+    private RollEntity employeeRole;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ACCOUNT_CREDIT_CARD",referencedColumnName = "ID")
+    private CreditCardEntity accountCreditCard;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "BANK_BRANCH")
@@ -46,7 +51,7 @@ public class EmployeeEntity {
             , String employeeNationalCode
             , String employeePhoneNumber
             , String employeePassword
-            , String employeeRollTitle
+            , RollEntity employeeRole
             , BankBranchEntity bankEmployees) {
         this.employeeUserName = employeeUserName;
         this.employeeFirstName = employeeFirstName;
@@ -54,7 +59,7 @@ public class EmployeeEntity {
         this.employeeNationalCode = employeeNationalCode;
         this.employeePhoneNumber = employeePhoneNumber;
         this.employeePassword = employeePassword;
-        this.employeeRollTitle = employeeRollTitle;
+        this.employeeRole = employeeRole;
         this.bankEmployees = bankEmployees;
     }
 
@@ -68,7 +73,7 @@ public class EmployeeEntity {
                 ", employeePassword='" + employeePassword + '\'' +
                 ", employeeNationalCode='" + employeeNationalCode + '\'' +
                 ", employeePhoneNumber='" + employeePhoneNumber + '\'' +
-                ", employeeRollTitle='" + employeeRollTitle + '\'' +
+                ", employeeRole='" + employeeRole + '\'' +
                 ", bankEmployees=" + bankEmployees +
                 '}';
     }
@@ -129,12 +134,12 @@ public class EmployeeEntity {
         this.employeePassword = employeePassword;
     }
 
-    public String getEmployeeRollTitle() {
-        return employeeRollTitle;
+    public RollEntity getEmployeeRole() {
+        return employeeRole;
     }
 
-    public void setEmployeeRollTitle(String employeeRollTitle) {
-        this.employeeRollTitle = employeeRollTitle;
+    public void setEmployeeRole(RollEntity employeeRole) {
+        this.employeeRole = employeeRole;
     }
 
     public BankBranchEntity getBankEmployees() {

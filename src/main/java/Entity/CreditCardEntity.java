@@ -11,7 +11,7 @@ public class CreditCardEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "CREDIT_CARD_NUMBER",length = 16,unique = true)
+    @Column(name = "CREDIT_CARD_NUMBER",length = 8,unique = true)
     private int creditCardNumber;
 
     @OneToOne(mappedBy = "accountCreditCard")

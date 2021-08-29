@@ -41,10 +41,10 @@ public class CustomerForm {
         }while (!customerInput.matches(ConstantValue.MENU_REGEX));
         switch (customerInput){
             case "1":
-                AccountService.createAccount();
+                AccountService.createAccount(resultCustomer);
                 break;
             case "2":
-                CreditCardService.createCreditCard();
+                CreditCardService.requestCreditCard(resultCustomer);
                 break;
             case "0":
                 menu();

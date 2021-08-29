@@ -24,7 +24,6 @@ public class Main {
             admin.setAdminName("admin");
             admin.setAdminPassword("admin");
             DBConnector.save(admin);
-            DBConnector.commit();
         }
 
     }
@@ -38,7 +37,6 @@ public class Main {
             RollEntity rollManager = new RollEntity();
             rollManager.setRollTitle("Branch Manager");
             DBConnector.save(rollManager);
-            DBConnector.commit();
         }
     }
 
@@ -47,9 +45,7 @@ public class Main {
         if (branchCount.size() == 0) {
             BankBranchEntity newBranch = new BankBranchEntity();
             newBranch.setBankBranchName("Central");
-            newBranch.setBankBranchAdmin("Amir Abedi");
             DBConnector.save(newBranch);
-            DBConnector.commit();
         }
     }
 }

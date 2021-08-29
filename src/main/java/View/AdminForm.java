@@ -23,18 +23,19 @@ public class AdminForm {
         }while (!adminChoice.matches(ConstantValue.MENU_REGEX));
         switch (adminChoice){
             case "1":
-                BankBranchService.createBankBranch();
+                BankBranchService.createBankBranch(resultAdmin);
                 break;
             case "2":
-                BankBranchService.asSignAdmin();
+                BankBranchService.asSignAdmin(resultAdmin);
                 break;
             case "3":
-                EmployeeService.asSignRoll();
+                EmployeeService.asSignRoll(resultAdmin);
+                break;
             case "4":
-                BankBranchService.seeBranchManager();
+                BankBranchService.seeBranchManager(resultAdmin);
                 break;
             case "5":
-                AdminService.createRoll();
+                AdminService.createRoll(resultAdmin);
                 break;
             case "0":
                 MainForm.menu();

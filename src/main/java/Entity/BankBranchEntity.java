@@ -16,8 +16,9 @@ public class BankBranchEntity {
     @Column(name = "BANK_BRANCH_NAME",length = 30,unique = true)
     private String bankBranchName;
 
-    @Column(name = "BANK_BRANCH_ADMIN",unique = true)
-    private String bankBranchAdmin;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "BANK_BRANCH_ADMIN",referencedColumnName = "ID")
+    private EmployeeEntity bankBranchAdmin;
 
     @OneToMany(mappedBy = "bankEmployees")
     private List<EmployeeEntity> bankEmployee = new ArrayList<EmployeeEntity>();
@@ -26,7 +27,7 @@ public class BankBranchEntity {
 
     }
 
-    public BankBranchEntity(String bankBranchName, String bankBranchAdmin, List<EmployeeEntity> bankEmployee) {
+    public BankBranchEntity(String bankBranchName, EmployeeEntity bankBranchAdmin, List<EmployeeEntity> bankEmployee) {
         this.bankBranchName = bankBranchName;
         this.bankBranchAdmin = bankBranchAdmin;
         this.bankEmployee = bankEmployee;
@@ -58,11 +59,11 @@ public class BankBranchEntity {
         this.bankBranchName = bankBranchName;
     }
 
-    public String getBankBranchAdmin() {
+    public EmployeeEntity getBankBranchAdmin() {
         return bankBranchAdmin;
     }
 
-    public void setBankBranchAdmin(String bankBranchAdmin) {
+    public void setBankBranchAdmin(EmployeeEntity bankBranchAdmin) {
         this.bankBranchAdmin = bankBranchAdmin;
     }
 

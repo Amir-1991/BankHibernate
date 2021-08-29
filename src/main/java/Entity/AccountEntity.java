@@ -11,7 +11,8 @@ public class AccountEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "ACCOUNT_NUMBER",length = 20,unique = true)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ACCOUNT_NUMBER",length = 8,unique = true)
     private int accountNumber;
 
     @ManyToOne(fetch = FetchType.LAZY)
