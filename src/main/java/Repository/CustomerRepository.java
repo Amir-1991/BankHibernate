@@ -1,9 +1,11 @@
 package Repository;
 
+import Config.ConstantValue;
 import Config.DBConnector;
 import Entity.CustomerEntity;
 import View.CustomerForm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerRepository {
@@ -11,14 +13,24 @@ public class CustomerRepository {
         try {
             DBConnector.save(newCustomer);
         } catch (Exception e) {
-            System.out.println("Your Information Already Has Is DB");
+            System.out.println(ConstantValue.NOT_UNIQUE);
             CustomerForm.menu();
         }
     }
 
     public static List load(List<String> logInfo) {
-        String query = "SELECT cus FROM CustomerEntity cus WHERE cus.customerUserName = '" + logInfo.get(0) + "'";
-        List<CustomerEntity> resultCustomer = DBConnector.query(query);
+        List<CustomerEntity> resultCustomer = new ArrayList<>();
+        try {
+            String query = "SELECT cus FROM CustomerEntity cus WHERE cus.customerUserName = '" + logInfo.get(0) + "'";
+            resultCustomer = DBConnector.query(query);
+        } catch (Exception e) {
+            System.out.println(ConstantValue.UNSUCCESS_REQUEST);
+            CustomerForm.menu();
+        }
         return resultCustomer;
+    }
+
+    public static void update(CustomerEntity resultCustomer) {
+        DBConnector.update(resultCustomer);
     }
 }

@@ -7,7 +7,7 @@
     <session-factory>
 
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://172.17.0.4:3306/bank</property>
+        <property name="connection.url">jdbc:mysql://172.17.0.3:3306/bank</property>
         <property name="connection.username">root</property>
         <property name="connection.password">123</property>
 
@@ -17,6 +17,7 @@
         <property name="format_sql">false</property>
         <property name="show_sql">false</property>
 
+        <mapping class="Entity.TransactionEntity"/>
         <mapping class="Entity.CreditCardEntity"/>
         <mapping class="Entity.BankBranchEntity"/>
         <mapping class="Entity.EmployeeEntity"/>

@@ -3,7 +3,6 @@ package Repository;
 import Config.DBConnector;
 import Entity.AdminEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdminRepository {

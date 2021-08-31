@@ -3,16 +3,13 @@ package View;
 import Config.ConstantValue;
 import Service.AdminService;
 
-import java.util.Scanner;
-
 public class MainForm {
 
     public static void menu() {
-        Scanner scanner = new Scanner(System.in);
         String menuInput;
         mainMenu();
         do {
-            menuInput = scanner.next();
+            menuInput = ConstantValue.SCANNER.next();
         }while (!menuInput.matches(ConstantValue.MENU_REGEX));
         switch (menuInput){
             case "1":
@@ -22,7 +19,7 @@ public class MainForm {
                 EmployeeForm.menu();
                 break;
             case "3":
-                System.out.println("GoodLuck");
+                System.out.println(ConstantValue.END);
                 break;
             case "0":
                 AdminService.signInAdmin();

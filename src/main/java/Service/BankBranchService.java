@@ -8,18 +8,15 @@ import Repository.BankBranchRepository;
 import Repository.EmployeeRepository;
 import View.AdminForm;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class BankBranchService {
     public static void createBankBranch(List<AdminEntity> resultAdmin) {
-        Scanner scanner = new Scanner(System.in);
         BankBranchEntity newBankBranch = new BankBranchEntity();
         String inputCustomer;
         showMessage("Branch Name");
         do {
-            inputCustomer = scanner.next();
+            inputCustomer = ConstantValue.SCANNER.next();
             newBankBranch.setBankBranchName(inputCustomer);
         } while (!inputCustomer.matches(ConstantValue.NAME_REGEX));
         List<EmployeeEntity> manage = EmployeeRepository.allManagers(resultAdmin);
@@ -34,7 +31,7 @@ public class BankBranchService {
             }
             do {
 
-                inputCustomer = scanner.next();
+                inputCustomer = ConstantValue.SCANNER.next();
             }while (inputCustomer.matches(ConstantValue.MENU_REGEX));
             newBankBranch.setBankBranchAdmin(manage.get((Integer.parseInt(inputCustomer))-1));
             BankBranchRepository.save(newBankBranch);
@@ -43,8 +40,6 @@ public class BankBranchService {
     }
 
     public static void asSignAdmin(List<AdminEntity> resultAdmin) {
-        Scanner scanner = new Scanner(System.in);
-        List<String> managerBranch = new ArrayList<>();
         int inputManBranch = 0;
         int inputManEmp = 0;
         List<BankBranchEntity> bankBranchEntities = BankBranchRepository.allBranchesNoneActive();
@@ -56,7 +51,7 @@ public class BankBranchService {
                 System.out.println((branchCounter+1)+": "+bankBranchEntities.get(branchCounter).getBankBranchName());
             }
             showMessage("Branch Id");
-            inputManBranch = scanner.nextInt();
+            inputManBranch = ConstantValue.SCANNER.nextInt();
         }
         List<EmployeeEntity> employeeEntities = EmployeeRepository.allDeActiveManagers();
         if (employeeEntities.size()==0){
@@ -67,7 +62,7 @@ public class BankBranchService {
                 System.out.println((manageCounter+1)+": "+employeeEntities.get(manageCounter).getEmployeeUserName());
             }
             showMessage("Manager Id");
-            inputManEmp = scanner.nextInt();
+            inputManEmp = ConstantValue.SCANNER.nextInt();
         }
         EmployeeService.update(bankBranchEntities.get(inputManBranch-1));
         BankBranchRepository.update(employeeEntities.get(inputManEmp-1));

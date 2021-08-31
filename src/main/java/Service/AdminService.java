@@ -1,5 +1,6 @@
 package Service;
 
+import Config.ConstantValue;
 import Entity.AdminEntity;
 import Entity.RollEntity;
 import Repository.AdminRepository;
@@ -7,23 +8,19 @@ import Repository.RollRepository;
 import View.AdminForm;
 import View.MainForm;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class AdminService {
     public static void signInAdmin() {
-        Scanner logInScanner = new Scanner(System.in);
-        List<String> logInfo = new ArrayList<>();
         showMessage("User Name");
-        logInfo.add(0, logInScanner.next());
+        ConstantValue.listString.add(0, ConstantValue.SCANNER.next());
         showMessage("Password");
-        logInfo.add(1, logInScanner.next());
-        List<AdminEntity> resultAdmin = AdminRepository.load(logInfo);
+        ConstantValue.listString.add(1, ConstantValue.SCANNER.next());
+        List<AdminEntity> resultAdmin = AdminRepository.load(ConstantValue.listString);
         if (resultAdmin.size() == 0) {
             System.out.println("Admin Not Found");
             MainForm.menu();
-        } else if (!resultAdmin.get(0).getAdminPassword().equals(logInfo.get(1))) {
+        } else if (!resultAdmin.get(0).getAdminPassword().equals(ConstantValue.listString.get(1))) {
             System.out.println("Password Is Wrong ");
         } else {
             AdminForm.adminPanel(resultAdmin);
@@ -31,10 +28,9 @@ public class AdminService {
     }
 
     public static void createRoll(List<AdminEntity> resultAdmin) {
-        Scanner rollScanner = new Scanner(System.in);
         RollEntity newRoll = new RollEntity();
         showMessage("Roll Title");
-        newRoll.setRollTitle(rollScanner.next());
+        newRoll.setRollTitle(ConstantValue.SCANNER.next());
         RollRepository.save(newRoll);
     }
 

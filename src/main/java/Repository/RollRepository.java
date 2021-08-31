@@ -1,5 +1,6 @@
 package Repository;
 
+import Config.ConstantValue;
 import Config.DBConnector;
 import Entity.RollEntity;
 
@@ -11,7 +12,7 @@ public class RollRepository {
     }
 
     public static List<RollEntity> seeAllRolls() {
-        List<RollEntity> rollRes = DBConnector.query("SELECT roll FROM RollEntity roll");
+        List<RollEntity> rollRes = DBConnector.query(ConstantValue.ALL_ROLLS);
         return rollRes;
     }
 }

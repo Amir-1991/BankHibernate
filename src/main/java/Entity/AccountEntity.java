@@ -11,19 +11,21 @@ public class AccountEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ACCOUNT_NUMBER",length = 8,unique = true)
-    private int accountNumber;
+    @Column(name = "ACCOUNT_NUMBER", length = 13, unique = true)
+    private String accountNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "ACCOUNT_SALARY", length = 20)
+    private String accountSalary;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ACCOUNT_OWNER")
     private CustomerEntity accountOwner;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ACCOUNT_CREDIT_CARD",referencedColumnName = "ID")
+    @JoinColumn(name = "ACCOUNT_CREDIT_CARD", referencedColumnName = "ID")
     private CreditCardEntity accountCreditCard;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ACCOUNT_BANK_BRANCH")
     private BankBranchEntity accountBankBranch;
 
@@ -31,8 +33,13 @@ public class AccountEntity {
 
     }
 
-    public AccountEntity(int accountNumber, CustomerEntity accountOwner, CreditCardEntity accountCreditCard, BankBranchEntity accountBankBranch) {
+    public AccountEntity(String accountNumber
+            , String accountSalary
+            , CustomerEntity accountOwner
+            , CreditCardEntity accountCreditCard
+            , BankBranchEntity accountBankBranch) {
         this.accountNumber = accountNumber;
+        this.accountSalary = accountSalary;
         this.accountOwner = accountOwner;
         this.accountCreditCard = accountCreditCard;
         this.accountBankBranch = accountBankBranch;
@@ -43,6 +50,7 @@ public class AccountEntity {
         return "AccountEntity{" +
                 "id=" + id +
                 ", accountNumber=" + accountNumber +
+                ", accountSalary=" + accountSalary +
                 ", accountOwner=" + accountOwner +
                 ", accountCreditCard=" + accountCreditCard +
                 ", accountBankBranch=" + accountBankBranch +
@@ -57,12 +65,20 @@ public class AccountEntity {
         this.id = id;
     }
 
-    public int getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(int accountNumber) {
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    public String getAccountSalary() {
+        return accountSalary;
+    }
+
+    public void setAccountSalary(String accountSalary) {
+        this.accountSalary = accountSalary;
     }
 
     public CustomerEntity getAccountOwner() {
@@ -88,4 +104,5 @@ public class AccountEntity {
     public void setAccountBankBranch(BankBranchEntity accountBankBranch) {
         this.accountBankBranch = accountBankBranch;
     }
+
 }

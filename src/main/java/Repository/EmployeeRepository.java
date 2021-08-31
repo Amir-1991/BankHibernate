@@ -1,5 +1,6 @@
 package Repository;
 
+import Config.ConstantValue;
 import Config.DBConnector;
 import Entity.AdminEntity;
 import Entity.EmployeeEntity;
@@ -16,7 +17,7 @@ public class EmployeeRepository {
         try {
             DBConnector.save(newEmployee);
         } catch (Exception e) {
-            System.out.println("Your Information Already Has Is DB");
+            System.out.println(ConstantValue.NOT_UNIQUE);
             EmployeeForm.menu();
         }
     }
@@ -27,7 +28,7 @@ public class EmployeeRepository {
             String query = "SELECT emp FROM EmployeeEntity emp WHERE emp.employeeUserName = '" + logInfo.get(0) + "'";
             resultEmployee = DBConnector.query(query);
         } catch (Exception e) {
-            System.out.println("Your Information Not Found In DB");
+            System.out.println(ConstantValue.NOT_FOUND);
             EmployeeForm.menu();
         }
         return resultEmployee;
@@ -36,9 +37,9 @@ public class EmployeeRepository {
     public static List allEmployees() {
         List<EmployeeEntity> empResult = new ArrayList<>();
         try {
-            empResult = DBConnector.query("SELECT emp FROM EmployeeEntity emp");
+            empResult = DBConnector.query(ConstantValue.ALL_EMPLOYEE);
         } catch (Exception e) {
-            System.out.println("No Employee In Table Please LogIn Again");
+            System.out.println(ConstantValue.NOT_FOUND);
             MainForm.menu();
         }
         return empResult;
@@ -48,7 +49,7 @@ public class EmployeeRepository {
         try {
             DBConnector.update(rollResult);
         } catch (Exception e) {
-            System.out.println("Sorry Cant Set Roll Please Try Again");
+            System.out.println(ConstantValue.UNSUCCESS_REQUEST);
             EmployeeForm.menu();
         }
     }
@@ -56,9 +57,9 @@ public class EmployeeRepository {
     public static List allManagers(List<AdminEntity> resultAdmin) {
         List<EmployeeEntity> manageResult = new ArrayList<>();
         try {
-            DBConnector.query("SELECT manage FROM EmployeeEntity manage WHERE manage.employeeRollTitle = 'Branch Manager'");
+            DBConnector.query(ConstantValue.FETCH_MANAGERS);
         } catch (Exception e) {
-            System.out.println("No Manager In Employees ");
+            System.out.println(ConstantValue.NOT_FOUND);
             AdminForm.adminPanel(resultAdmin);
         }
         return manageResult;
@@ -67,9 +68,9 @@ public class EmployeeRepository {
     public static List<EmployeeEntity> allDeActiveManagers() {
         List<EmployeeEntity> manageResult = new ArrayList<>();
         try {
-            manageResult = DBConnector.query("SELECT manage FROM EmployeeEntity manage WHERE manage.employeeRollTitle LIKE Branch Manager AND manage.bankBranch IS NULL ");
+            manageResult = DBConnector.query(ConstantValue.FETCH_MANAGER_NON_ACTIVE);
         } catch (Exception e) {
-            System.out.println("No Manager Without Branch ");
+            System.out.println(ConstantValue.NOT_FOUND);
             AdminForm.mainDashboard();
         }
         return manageResult;
@@ -80,7 +81,7 @@ public class EmployeeRepository {
         try {
             employees = DBConnector.query("SELECT res FROM EmployeeEntity res WHERE res.bankEmployees = '" + resultEmployee.get(0).getBankEmployees().getId() + "'");
         } catch (Exception e) {
-            System.out.println(" Employees Not Found ");
+            System.out.println(ConstantValue.NOT_FOUND);
             EmployeeForm.employeePanel(resultEmployee);
         }
         return employees;

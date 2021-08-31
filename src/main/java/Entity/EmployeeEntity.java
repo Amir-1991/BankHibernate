@@ -29,7 +29,7 @@ public class EmployeeEntity {
     @Column(name = "EMPLOYEE_PASSWORD")
     private String employeePassword;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "EMPLOYEE_ROLL_TITLE")
     private RollEntity employeeRole;
 
@@ -37,7 +37,7 @@ public class EmployeeEntity {
     @JoinColumn(name = "ACCOUNT_CREDIT_CARD",referencedColumnName = "ID")
     private CreditCardEntity accountCreditCard;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "BANK_BRANCH")
     private BankBranchEntity bankEmployees;
 

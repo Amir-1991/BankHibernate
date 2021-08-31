@@ -4,7 +4,6 @@ import Entity.BankBranchEntity;
 import Entity.RollEntity;
 import View.MainForm;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {

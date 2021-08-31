@@ -1,11 +1,11 @@
 package View;
 
 import Config.ConstantValue;
-import Entity.CreditCardEntity;
 import Entity.CustomerEntity;
 import Service.AccountService;
 import Service.CreditCardService;
 import Service.CustomerService;
+import Service.TransactionService;
 
 import java.util.List;
 import java.util.Scanner;
@@ -41,10 +41,16 @@ public class CustomerForm {
         }while (!customerInput.matches(ConstantValue.MENU_REGEX));
         switch (customerInput){
             case "1":
-                AccountService.createAccount(resultCustomer);
+                AccountService.seeAllInformation(resultCustomer);
                 break;
             case "2":
+                AccountService.createAccount(resultCustomer);
+                break;
+            case "3":
                 CreditCardService.requestCreditCard(resultCustomer);
+                break;
+            case "4":
+                TransactionService.createRequest(resultCustomer);
                 break;
             case "0":
                 menu();
@@ -61,8 +67,10 @@ public class CustomerForm {
 
     public static void customerMenu(){
         System.out.println("This Is Your Panel \n" +
-                "1: Creat Account \n" +
-                "2: Creat Credit Card \n" +
+                "1: See Your Account \n" +
+                "2: Creat Account \n" +
+                "3: Creat Credit Card \n" +
+                "4: Creat Transfer Request \n" +
                 "0: Exit");
     }
 }

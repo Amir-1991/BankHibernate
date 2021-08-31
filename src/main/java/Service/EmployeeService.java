@@ -8,83 +8,75 @@ import Repository.RollRepository;
 import View.AdminForm;
 import View.EmployeeForm;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class EmployeeService {
     public static void createEmployee() {
-        Scanner scanner = new Scanner(System.in);
         EmployeeEntity newEmployee = new EmployeeEntity();
         String inputEmployee;
-        showMessage("User Name");
-        newEmployee.setEmployeeUserName(scanner.next());
+        showMessage(ConstantValue.USER_NAME);
+        newEmployee.setEmployeeUserName(ConstantValue.SCANNER.next());
         do {
-            showMessage("First Name");
-            inputEmployee = scanner.next();
+            showMessage(ConstantValue.FIRST_NAME);
+            inputEmployee = ConstantValue.SCANNER.next();
             newEmployee.setEmployeeFirstName(inputEmployee);
         } while (!inputEmployee.matches(ConstantValue.NAME_REGEX));
         do {
-            showMessage("Last Name");
-            inputEmployee = scanner.next();
+            showMessage(ConstantValue.LAST_NAME);
+            inputEmployee = ConstantValue.SCANNER.next();
             newEmployee.setEmployeeLastName(inputEmployee);
         } while (!inputEmployee.matches(ConstantValue.NAME_REGEX));
         do {
-            showMessage("National Code");
-            inputEmployee = scanner.next();
+            showMessage(ConstantValue.NATIONAL_CODE);
+            inputEmployee = ConstantValue.SCANNER.next();
             newEmployee.setEmployeeNationalCode(inputEmployee);
             newEmployee.setEmployeePassword(inputEmployee);
         } while (!inputEmployee.matches(ConstantValue.NATIONAL_CODE_REGEX));
         do {
-            showMessage("Phone Number");
-            inputEmployee = scanner.next();
+            showMessage(ConstantValue.PHONE_NUMBER);
+            inputEmployee = ConstantValue.SCANNER.next();
             newEmployee.setEmployeePhoneNumber(inputEmployee);
         } while (!inputEmployee.matches(ConstantValue.PHONE_NUMBER_REGEX));
         List<RollEntity> rolls = RollRepository.seeAllRolls();
         newEmployee.setEmployeeRole(rolls.get(0));
         EmployeeRepository.save(newEmployee);
-        System.out.println("Congratulations Your Panel Created ");
+        System.out.println(ConstantValue.SUCCESS_REQUEST);
         EmployeeForm.menu();
     }
 
     public static void signInEmployee() {
-        Scanner logInScanner = new Scanner(System.in);
-        List<String> logInfo = new ArrayList<>();
-        showMessage("User Name");
-        logInfo.add(0, logInScanner.next());
-        showMessage("Password");
-        logInfo.add(1, logInScanner.next());
-        List<EmployeeEntity> resultEmployee = EmployeeRepository.load(logInfo);
+        showMessage(ConstantValue.USER_NAME);
+        ConstantValue.listString.add(0, ConstantValue.SCANNER.next());
+        showMessage(ConstantValue.PASSWORD);
+        ConstantValue.listString.add(1, ConstantValue.SCANNER.next());
+        List<EmployeeEntity> resultEmployee = EmployeeRepository.load(ConstantValue.listString);
         if (resultEmployee.size() == 0) {
-            System.out.println("User Not Found");
-        } else if (!resultEmployee.get(0).getEmployeePassword().equals(logInfo.get(1))) {
-            System.out.println("Password Is Wrong ");
+            System.out.println(ConstantValue.NOT_USER);
+        } else if (!resultEmployee.get(0).getEmployeePassword().equals(ConstantValue.listString.get(1))) {
+            System.out.println(ConstantValue.WRONG_PASSWORD);
         } else {
             EmployeeForm.employeePanel(resultEmployee);
         }
     }
 
     public static void asSignRoll(List<AdminEntity> resultAdmin) {
-        Scanner scanner = new Scanner(System.in);
         List<EmployeeEntity> empResult = showEmployees();
         int empId;
-        System.out.println("Please Choice Employee Id Is Behind List \n" +
-                " Id\t Employee UserName");
+        System.out.println(ConstantValue.CHOICE_EMPLOYEE);
         for (int empCounter = 0; empCounter < empResult.size(); empCounter++) {
             System.out.println((empCounter + 1) + ": " + empResult.get(empCounter).getEmployeeUserName());
         }
         do {
-            empId = scanner.nextInt();
+            empId = ConstantValue.SCANNER.nextInt();
         } while (String.valueOf(empId).matches(ConstantValue.MENU_REGEX));
         List<RollEntity> rollResult = RollRepository.seeAllRolls();
         int rollId;
-        System.out.println("Please Choice Roll Id Is Behind List \n" +
-                " Id\t Roll Title");
+        System.out.println(ConstantValue.CHOICE_ROLL);
         for (int rollCounter = 0; rollCounter < rollResult.size(); rollCounter++) {
             System.out.println((rollCounter + 1) + ": " + rollResult.get(rollCounter).getRollTitle());
         }
         do {
-            rollId = scanner.nextInt();
+            rollId = ConstantValue.SCANNER.nextInt();
         } while (String.valueOf(rollId).matches(ConstantValue.MENU_REGEX));
         EmployeeRepository.setRollToEmployee((empResult.get((empId) - 1)), rollResult.get((rollId) - 1));
         AdminForm.adminPanel(resultAdmin);
@@ -98,9 +90,9 @@ public class EmployeeService {
     public static void seeAll() {
         List<EmployeeEntity> allEmployee = EmployeeRepository.allEmployees();
         if (allEmployee.size() == 0) {
-            System.out.println("Not Employee Found ");
+            System.out.println(ConstantValue.NOT_EMPLOYEE);
         } else {
-            System.out.println("Id\t\tEmployee Name\t\tBranch Name ");
+            System.out.println(ConstantValue.EMPLOYEE_TITLE);
             for (int empCounter = 0; empCounter < allEmployee.size(); empCounter++) {
                 System.out.println((empCounter + 1) + "\t\t" + allEmployee.get(empCounter).getEmployeeFirstName() + ' ' +
                         allEmployee.get(empCounter).getEmployeeLastName() + "\t\t" + allEmployee.get(empCounter).getBankEmployees().getBankBranchName());
@@ -111,7 +103,7 @@ public class EmployeeService {
 
     public static void seeAllEmpByBranch(List<EmployeeEntity> resultEmployee) {
         List<EmployeeEntity> employeeList = EmployeeRepository.findMyEmployee(resultEmployee);
-        System.out.println("Id\t\tFirst Name\t\tLast Name\t\tNationalCode");
+        System.out.println(ConstantValue.EMPLOYEE_INFORMATION);
         for (int empCounter = 0; empCounter < employeeList.size(); empCounter++) {
             System.out.println((empCounter + 1) + ": \t\t" + employeeList.get(empCounter).getEmployeeFirstName() + ' ' +
                     employeeList.get(empCounter).getEmployeeLastName() + "\t\t" + employeeList.get(empCounter).getEmployeeNationalCode());
