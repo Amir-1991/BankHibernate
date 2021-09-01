@@ -20,11 +20,12 @@ public class TransactionService {
         TransactionEntity newTransaction = new TransactionEntity();
         newTransaction.setOriginCard(resultCustomer.get(0).getAccountOwner().get(0).getAccountCreditCard());
         int input = 0;
+        String cvv2;
         System.out.println(ConstantValue.REQUEST_AMOUNT);
         transferValues.add(0, ConstantValue.SCANNER.next());
         System.out.println(ConstantValue.REQUEST_CVV2);
-        input = ConstantValue.SCANNER.nextInt();
-        if (resultCustomer.get(0).getAccountOwner().get(0).getAccountCreditCard().getAccountCvv2Number().equals(String.valueOf(input))) {
+        cvv2= ConstantValue.SCANNER.next();
+        if (resultCustomer.get(0).getAccountOwner().get(0).getAccountCreditCard().getAccountCvv2Number().equals(String.valueOf(cvv2))) {
             transferValues.add(1, resultCustomer.get(0).getAccountOwner().get(0).getAccountSalary());
             newTransaction.setTransferFee(transferValues.get(0));
             BigInteger validationValue = new BigInteger(transferValues.get(0));
