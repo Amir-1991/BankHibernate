@@ -1,6 +1,7 @@
 package Entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "TRANSACTION")
@@ -22,16 +23,21 @@ public class TransactionEntity {
     @Column(name = "TRANSFER_FEE")
     private String transferFee;
 
+    @Column(name = "TRANSFER_DATE")
+    private LocalDate transferDate;
+
     public TransactionEntity() {
 
     }
 
     public TransactionEntity(CreditCardEntity originCard
             , CreditCardEntity destinationCard
-            , String transferFee) {
+            , String transferFee
+            , LocalDate transferDate) {
         this.originCard = originCard;
         this.destinationCard = destinationCard;
         this.transferFee = transferFee;
+        this.transferDate = transferDate;
     }
 
     @Override
@@ -41,6 +47,7 @@ public class TransactionEntity {
                 ", originCard=" + originCard +
                 ", destinationCard=" + destinationCard +
                 ", transferFee=" + transferFee +
+                ", transferDate=" + transferDate +
                 '}';
     }
 
@@ -74,5 +81,13 @@ public class TransactionEntity {
 
     public void setTransferFee(String transferFee) {
         this.transferFee = transferFee;
+    }
+
+    public LocalDate getTransferDate() {
+        return transferDate;
+    }
+
+    public void setTransferDate(LocalDate transferDate) {
+        this.transferDate = transferDate;
     }
 }

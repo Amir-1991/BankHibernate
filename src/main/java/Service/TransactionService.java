@@ -9,6 +9,7 @@ import Repository.TransactionRepository;
 import View.CustomerForm;
 
 import java.math.BigInteger;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class TransactionService {
         if (resultCustomer.get(0).getAccountOwner().get(0).getAccountCreditCard().getAccountCvv2Number().equals(String.valueOf(cvv2))) {
             transferValues.add(1, resultCustomer.get(0).getAccountOwner().get(0).getAccountSalary());
             newTransaction.setTransferFee(transferValues.get(0));
+            newTransaction.setTransferDate(LocalDate.now());
             BigInteger validationValue = new BigInteger(transferValues.get(0));
             BigInteger currentValue = new BigInteger(transferValues.get(1));
             int afterTransaction = currentValue.compareTo(validationValue.add(ConstantValue.TRANSFER_FEE));
